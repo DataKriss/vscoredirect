@@ -145,31 +145,31 @@ def index():
             )
 
         # ✅ Upload to Google Drive
-        upload_to_drive(log_file)
+        #upload_to_drive(log_file)
 
         return redirect("https://vsco.co/kristinakrukhaug")
 
     return render_template_string(FORM_HTML)
 
 
-def upload_to_drive(file_path):
-  gauth = GoogleAuth()
-  gauth.LoadCredentialsFile("mycreds.txt")
+#def upload_to_drive(file_path):
+ # gauth = GoogleAuth()
+  #gauth.LoadCredentialsFile("mycreds.txt")
 
-  if gauth.credentials is None:
-    gauth.CommandLineAuth()
-  elif gauth.access_token_expired:
-      gauth.Refresh()
-  else:
-      gauth.Authorize()
+  #if gauth.credentials is None:
+  #  gauth.CommandLineAuth()
+  #elif gauth.access_token_expired:
+   #   gauth.Refresh()
+  #else:
+   #   gauth.Authorize()
 
-  gauth.SaveCredentialsFile("mycreds.txt")
+  #gauth.SaveCredentialsFile("mycreds.txt")
 
-  drive = GoogleDrive(gauth)
-  file = drive.CreateFile({'title': file_path})
-  file.SetContentFile(file_path)
-  file.Upload()
-  print(f"✅ Uploaded {file_path} to Google Drive")
+  #drive = GoogleDrive(gauth)
+  #file = drive.CreateFile({'title': file_path})
+  #file.SetContentFile(file_path)
+  #file.Upload()
+  #print(f"✅ Uploaded {file_path} to Google Drive")
 
 
 app.run(host='0.0.0.0', port=81)
