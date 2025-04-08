@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, render_template_string
 import datetime
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+#from pydrive.auth import GoogleAuth
+#from pydrive.drive import GoogleDrive
 
 
 app = Flask(__name__)
