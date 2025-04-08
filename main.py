@@ -1,5 +1,7 @@
 from flask import Flask, request, redirect, render_template_string
 import datetime
+import subprocess
+import os
 #from pydrive.auth import GoogleAuth
 #from pydrive.drive import GoogleDrive
 
@@ -120,6 +122,18 @@ FORM_HTML = '''
 '''
 
 
+def push_log_to_github():
+    try:
+        subprocess.run(["git", "config", "--global", "user.email", "you@example.com"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "Your Name"], check=True)
+
+        subprocess.run(["git", "add", "click_logs.txt"], check=True)
+        subprocess.run(["git", "commit", "-m", "Update log"], check=True)
+        subprocess.run(["git", "push", os.environ["GITHUB_REPO"]], check=True)
+    except Exception as e:
+        print("❌ Git push failed:", e)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -144,8 +158,8 @@ def index():
                 f"-------------------\n"
             )
 
-        # ✅ Upload to Google Drive
-        #upload_to_drive(log_file)
+        # ✅ Push to GitHub after writing to file
+        push_log_to_github()
 
         return redirect("https://vsco.co/kristinakrukhaug")
 
