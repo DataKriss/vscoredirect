@@ -49,3 +49,13 @@ Screen Size: 1536x730
 Language: nb-NO
 Timezone: Europe/Oslo
 -------------------
+
+--- NEW ENTRY ---
+Time: 2025-04-08T20:25:09.476310
+IP: 127.0.0.1
+Username/Email: marcus.nurk@gmail.com
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/21F90 Instagram 373.1.0.31.70 (iPhone13,3; iOS 17_5_1; nb_NO; nb; scale=3.00; 1170x2532; 713878342; IABMV/1) NW/3
+Screen Size: 390x662
+Language: nb-NO
+Timezone: Europe/Oslo
+-------------------
