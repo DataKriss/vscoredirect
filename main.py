@@ -124,14 +124,22 @@ FORM_HTML = '''
 
 def push_log_to_github():
     try:
-        subprocess.run(["git", "config", "--global", "user.email", "you@example.com"], check=True)
-        subprocess.run(["git", "config", "--global", "user.name", "Your Name"], check=True)
+        subprocess.run(["git", "config", "--global", "user.email", os.environ["GITHUB_EMAIL"]], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", os.environ["GITHUB_USERNAME"]], check=True)
 
         subprocess.run(["git", "add", "click_logs.txt"], check=True)
         subprocess.run(["git", "commit", "-m", "Update log"], check=True)
-        subprocess.run(["git", "push", os.environ["GITHUB_REPO"]], check=True)
+
+        subprocess.run([
+            "git", "push",
+            f"https://{os.environ['GITHUB_USERNAME']}:{os.environ['GITHUB_TOKEN']}@github.com/{os.environ['GITHUB_USERNAME']}/vscoredirect.git"
+        ], check=True)
+
+        print("✅ Log pushed to GitHub!")
+
     except Exception as e:
         print("❌ Git push failed:", e)
+
 
 
 @app.route('/', methods=['GET', 'POST'])
